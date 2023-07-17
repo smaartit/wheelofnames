@@ -1,11 +1,12 @@
 import React from "react";
 import { hot } from "react-hot-loader";
+import Navbar from "./components/Navbar";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <h1>Wheel of Names</h1>
+      <Navbar />
     </div>
   );
 }
