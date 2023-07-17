@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,7 +12,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AttractionsIcon from "@mui/icons-material/Attractions";
 
-const pages = ["Wheels", "Participants"];
+const pages = [{ key: "wheels", text: "Wheels", href: "/wheels" }];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar() {
@@ -80,8 +81,13 @@ function Navbar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem
+                  key={page.key}
+                  href={page.href}
+                  onClick={handleCloseNavMenu}
+                  LinkComponent={RouterLink}
+                >
+                  <Typography textAlign="center">{page.text}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -109,11 +115,13 @@ function Navbar() {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.key}
+                component={RouterLink}
+                to={page.href}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {page.text}
               </Button>
             ))}
           </Box>
